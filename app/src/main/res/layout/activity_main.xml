@@ -11,14 +11,13 @@
         android:backgroundTint="@color/abc_primary_text_material_dark"
         android:id="@+id/textView" />
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
+        android:id="@+id/listView"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
-        android:indeterminate="false" />
+        android:layout_marginTop="33dp"
+        android:choiceMode="multipleChoice" />
 
 </RelativeLayout>
