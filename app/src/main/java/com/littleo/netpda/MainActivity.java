@@ -33,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
                 pass = et2.getText().toString();
                 Toast.makeText(MainActivity.this,email,Toast.LENGTH_LONG).show();
                 Toast.makeText(MainActivity.this,pass,Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this,NetPDA.class));
             }
         });
     }
