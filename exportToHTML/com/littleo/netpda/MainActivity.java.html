@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+MainActivity.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">com.littleo.netpda; 
+ 
+</span><span class="s0">import </span><span class="s1">android.content.SharedPreferences; 
+</span><span class="s0">import </span><span class="s1">android.os.StrictMode; 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.ActionBarActivity; 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+</span><span class="s0">import </span><span class="s1">android.view.View; 
+</span><span class="s0">import </span><span class="s1">android.widget.Button; 
+</span><span class="s0">import </span><span class="s1">android.content.Intent; 
+</span><span class="s0">import </span><span class="s1">android.widget.EditText; 
+</span><span class="s0">import </span><span class="s1">android.widget.Toast; 
+ 
+</span><span class="s0">import </span><span class="s1">org.apache.http.HttpResponse; 
+</span><span class="s0">import </span><span class="s1">org.apache.http.NameValuePair; 
+</span><span class="s0">import </span><span class="s1">org.apache.http.client.ClientProtocolException; 
+</span><span class="s0">import </span><span class="s1">org.apache.http.client.HttpClient; 
+</span><span class="s0">import </span><span class="s1">org.apache.http.client.entity.UrlEncodedFormEntity; 
+</span><span class="s0">import </span><span class="s1">org.apache.http.client.methods.HttpPost; 
+</span><span class="s0">import </span><span class="s1">org.apache.http.impl.client.DefaultHttpClient; 
+</span><span class="s0">import </span><span class="s1">org.apache.http.message.BasicNameValuePair; 
+ 
+</span><span class="s0">import </span><span class="s1">java.io.BufferedReader; 
+</span><span class="s0">import </span><span class="s1">java.io.IOException; 
+</span><span class="s0">import </span><span class="s1">java.io.InputStreamReader; 
+</span><span class="s0">import </span><span class="s1">java.io.OutputStream; 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList; 
+</span><span class="s0">import </span><span class="s1">java.util.List; 
+ 
+ 
+</span><span class="s0">public class </span><span class="s1">MainActivity </span><span class="s0">extends </span><span class="s1">ActionBarActivity { 
+    </span><span class="s2">//@Override</span><span class="s1"> 
+    </span><span class="s0">private </span><span class="s1">SharedPreferences pref; 
+    </span><span class="s0">private </span><span class="s1">String baseURL=</span><span class="s3">&quot;http://abijithkrish.t15.org/netpda/&quot;</span><span class="s1">; 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+        </span><span class="s0">if</span><span class="s1">(android.os.Build.VERSION.SDK_INT&gt;</span><span class="s4">9</span><span class="s1">){ 
+            StrictMode.ThreadPolicy policy=</span><span class="s0">new </span><span class="s1">StrictMode.ThreadPolicy.Builder().permitAll().build(); 
+            StrictMode.setThreadPolicy(policy); 
+        } 
+        setContentView(R.layout.activity_main); 
+        String loginid=</span><span class="s0">null</span><span class="s1">; 
+        pref=getSharedPreferences(</span><span class="s3">&quot;login&quot;</span><span class="s1">,</span><span class="s4">0</span><span class="s1">); 
+        loginid = pref.getString(</span><span class="s3">&quot;loginid&quot;</span><span class="s1">,</span><span class="s3">&quot;notloggedin&quot;</span><span class="s1">); 
+        </span><span class="s0">if</span><span class="s1">(loginid.equals(</span><span class="s3">&quot;notloggedin&quot;</span><span class="s1">)) { 
+ 
+            Button b1=(Button) findViewById(R.id.signup); 
+            b1.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+                @Override 
+                </span><span class="s0">public void </span><span class="s1">onClick(View v) { 
+                    startActivity(</span><span class="s0">new </span><span class="s1">Intent(MainActivity.</span><span class="s0">this</span><span class="s1">,Signup.</span><span class="s0">class</span><span class="s1">)); 
+                } 
+            }); 
+            Button bt2 =(Button) findViewById(R.id.login); 
+            bt2.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+                @Override 
+                </span><span class="s0">public void </span><span class="s1">onClick(View v) { 
+                    Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">,</span><span class="s3">&quot;clicked&quot;</span><span class="s1">,Toast.LENGTH_LONG).show(); 
+                    String email; 
+                    String pass; 
+                    EditText et1 = (EditText) findViewById(R.id.email); 
+                    EditText et2 = (EditText) findViewById(R.id.pass); 
+                    email = et1.getText().toString(); 
+                    pass = et2.getText().toString(); 
+                    HttpClient httpclient = </span><span class="s0">new </span><span class="s1">DefaultHttpClient(); 
+                    HttpPost httppost = </span><span class="s0">new </span><span class="s1">HttpPost(baseURL+</span><span class="s3">&quot;verifylogin.php&quot;</span><span class="s1">); 
+ 
+                    </span><span class="s0">try </span><span class="s1">{ 
+                        </span><span class="s2">// Add your data</span><span class="s1"> 
+                        List&lt;NameValuePair&gt; nameValuePairs = </span><span class="s0">new </span><span class="s1">ArrayList&lt;NameValuePair&gt;(</span><span class="s4">2</span><span class="s1">); 
+                        nameValuePairs.add(</span><span class="s0">new </span><span class="s1">BasicNameValuePair(</span><span class="s3">&quot;uname&quot;</span><span class="s1">, email)); 
+                        nameValuePairs.add(</span><span class="s0">new </span><span class="s1">BasicNameValuePair(</span><span class="s3">&quot;password&quot;</span><span class="s1">, pass)); 
+                        httppost.setEntity(</span><span class="s0">new </span><span class="s1">UrlEncodedFormEntity(nameValuePairs)); 
+ 
+                        </span><span class="s2">// Execute HTTP Post Request</span><span class="s1"> 
+                        HttpResponse response = httpclient.execute(httppost); 
+                        </span><span class="s2">//response.getEntity().getContent()</span><span class="s1"> 
+                        BufferedReader reader = </span><span class="s0">new </span><span class="s1">BufferedReader(</span><span class="s0">new </span><span class="s1">InputStreamReader(response.getEntity().getContent())); 
+                        System.out.println(reader.readLine()); 
+                        Toast.makeText(getApplicationContext(),</span><span class="s3">&quot;Got resp&quot;</span><span class="s1">,Toast.LENGTH_LONG).show(); 
+                    } </span><span class="s0">catch </span><span class="s1">(ClientProtocolException e) { 
+                        </span><span class="s2">// TODO Auto-generated catch block</span><span class="s1"> 
+                    } </span><span class="s0">catch </span><span class="s1">(IOException e) { 
+                        </span><span class="s2">// TODO Auto-generated catch block</span><span class="s1"> 
+                    } 
+                    </span><span class="s2">//Toast.makeText(MainActivity.this,email,Toast.LENGTH_LONG).show();</span><span class="s1"> 
+                    </span><span class="s2">//Toast.makeText(MainActivity.this,pass,Toast.LENGTH_LONG).show();</span><span class="s1"> 
+                    </span><span class="s2">//startActivity(new Intent(MainActivity.this,NetPDA.class));</span><span class="s1"> 
+ 
+                } 
+            }); 
+        } 
+        </span><span class="s0">else </span><span class="s1">{ 
+            startActivity(</span><span class="s0">new </span><span class="s1">Intent(MainActivity.</span><span class="s0">this</span><span class="s1">,NetPDA.</span><span class="s0">class</span><span class="s1">)); 
+            </span><span class="s2">//finish();</span><span class="s1"> 
+        } 
+ 
+    } 
+} 
+</span></pre>
+</body>
+</html>

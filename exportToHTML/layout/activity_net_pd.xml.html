@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>activity_net_pd.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(128,128,128); font-style: italic; }
+.s1 { }
+.s2 { color: rgb(0,0,128); font-weight: bold; }
+.s3 { color: rgb(0,0,255); font-weight: bold; }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+activity_net_pd.xml</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">&lt;!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. --&gt;</span><span class="s1"> 
+&lt;</span><span class="s2">android.support.v4.widget.DrawerLayout </span><span class="s3">xmlns:android=</span><span class="s4">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="s1"> 
+    </span><span class="s3">xmlns:tools=</span><span class="s4">&quot;http://schemas.android.com/tools&quot; </span><span class="s3">android:id=</span><span class="s4">&quot;@+id/drawer_layout&quot;</span><span class="s1"> 
+    </span><span class="s3">android:layout_width=</span><span class="s4">&quot;match_parent&quot; </span><span class="s3">android:layout_height=</span><span class="s4">&quot;match_parent&quot;</span><span class="s1"> 
+    </span><span class="s3">tools:context=</span><span class="s4">&quot;com.littleo.netpda.NetPDA&quot;</span><span class="s1">&gt; 
+ 
+    </span><span class="s0">&lt;!-- As the main content view, the view below consumes the entire 
+         space available using match_parent in both dimensions. --&gt;</span><span class="s1"> 
+    &lt;</span><span class="s2">FrameLayout </span><span class="s3">android:id=</span><span class="s4">&quot;@+id/container&quot; </span><span class="s3">android:layout_width=</span><span class="s4">&quot;match_parent&quot;</span><span class="s1"> 
+        </span><span class="s3">android:layout_height=</span><span class="s4">&quot;match_parent&quot; </span><span class="s1">/&gt; 
+ 
+    </span><span class="s0">&lt;!-- android:layout_gravity=&quot;start&quot; tells DrawerLayout to treat 
+         this as a sliding drawer on the left side for left-to-right 
+         languages and on the right side for right-to-left languages. 
+         If you're not building against API 17 or higher, use 
+         android:layout_gravity=&quot;left&quot; instead. --&gt;</span><span class="s1"> 
+    </span><span class="s0">&lt;!-- The drawer is given a fixed width in dp and extends the full height of 
+         the container. --&gt;</span><span class="s1"> 
+    &lt;</span><span class="s2">fragment </span><span class="s3">android:id=</span><span class="s4">&quot;@+id/navigation_drawer&quot;</span><span class="s1"> 
+        </span><span class="s3">android:layout_width=</span><span class="s4">&quot;@dimen/navigation_drawer_width&quot; </span><span class="s3">android:layout_height=</span><span class="s4">&quot;match_parent&quot;</span><span class="s1"> 
+        </span><span class="s3">android:layout_gravity=</span><span class="s4">&quot;start&quot; </span><span class="s3">android:name=</span><span class="s4">&quot;com.littleo.netpda.NavigationDrawerFragment&quot;</span><span class="s1"> 
+        </span><span class="s3">tools:layout=</span><span class="s4">&quot;@layout/fragment_navigation_drawer&quot; </span><span class="s1">/&gt; 
+ 
+&lt;/</span><span class="s2">android.support.v4.widget.DrawerLayout</span><span class="s1">&gt; 
+</span></pre>
+</body>
+</html>

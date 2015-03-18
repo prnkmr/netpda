@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Signup.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Signup.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">com.littleo.netpda; 
+ 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.ActionBarActivity; 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+</span><span class="s0">import </span><span class="s1">android.view.View; 
+</span><span class="s0">import </span><span class="s1">android.widget.Button; 
+</span><span class="s0">import </span><span class="s1">android.widget.EditText; 
+</span><span class="s0">import </span><span class="s1">android.widget.Toast; 
+ 
+ 
+</span><span class="s0">public class </span><span class="s1">Signup </span><span class="s0">extends </span><span class="s1">ActionBarActivity { 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+        setContentView(R.layout.activity_signup); 
+        Button bt1 = (Button) findViewById(R.id.registerbutton); 
+        bt1.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+            @Override 
+            </span><span class="s0">public void </span><span class="s1">onClick(View v) { 
+                String pass1, pass2; 
+                EditText et2, et3; 
+                et2 = (EditText) findViewById(R.id.pass); 
+                et3 = (EditText) findViewById(R.id.retype); 
+                pass1=et2.getText().toString(); 
+                pass2=et3.getText().toString(); 
+                </span><span class="s0">if</span><span class="s1">(pass1.equals(pass2)) { 
+                    String name, dob, designation, contactnum, email, description; 
+                    EditText et1, et4, et5, et6, et7, et8; 
+                    et1 = (EditText) findViewById(R.id.username); 
+                    et4 = (EditText) findViewById(R.id.dob); 
+                    et5 = (EditText) findViewById(R.id.designation); 
+                    et6 = (EditText) findViewById(R.id.contactnum); 
+                    et7 = (EditText) findViewById(R.id.email); 
+                    et8 = (EditText) findViewById(R.id.description); 
+                    name = et1.getText().toString(); 
+                    dob=et4.getText().toString(); 
+                    designation=et5.getText().toString(); 
+                    contactnum=et6.getText().toString(); 
+                    email=et7.getText().toString(); 
+                    description=et8.getText().toString(); 
+                    Toast.makeText(Signup.</span><span class="s0">this</span><span class="s1">,name,Toast.LENGTH_LONG).show(); 
+                    Toast.makeText(Signup.</span><span class="s0">this</span><span class="s1">,pass1,Toast.LENGTH_LONG).show(); 
+                    Toast.makeText(Signup.</span><span class="s0">this</span><span class="s1">,dob,Toast.LENGTH_LONG).show(); 
+                    Toast.makeText(Signup.</span><span class="s0">this</span><span class="s1">,designation,Toast.LENGTH_LONG).show(); 
+                    Toast.makeText(Signup.</span><span class="s0">this</span><span class="s1">,contactnum,Toast.LENGTH_LONG).show(); 
+                    Toast.makeText(Signup.</span><span class="s0">this</span><span class="s1">,email,Toast.LENGTH_LONG).show(); 
+                    Toast.makeText(Signup.</span><span class="s0">this</span><span class="s1">,description,Toast.LENGTH_LONG).show(); 
+                } 
+                </span><span class="s0">else </span><span class="s1">{ 
+                    Toast.makeText(Signup.</span><span class="s0">this</span><span class="s1">,</span><span class="s2">&quot;PASSWORD MISMATCH&quot;</span><span class="s1">,Toast.LENGTH_LONG).show(); 
+                } 
+ 
+            } 
+        }); 
+    } 
+} 
+</span></pre>
+</body>
+</html>

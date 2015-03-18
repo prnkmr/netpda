@@ -1,0 +1,174 @@
+<html>
+<head>
+<title>NetPDA.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+.s4 { color: rgb(0,0,255); }
+.s5 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+NetPDA.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">com.littleo.netpda; 
+ 
+</span><span class="s0">import </span><span class="s1">android.app.Activity; 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.ActionBarActivity; 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.ActionBar; 
+</span><span class="s0">import </span><span class="s1">android.support.v4.app.Fragment; 
+</span><span class="s0">import </span><span class="s1">android.support.v4.app.FragmentManager; 
+</span><span class="s0">import </span><span class="s1">android.content.Context; 
+</span><span class="s0">import </span><span class="s1">android.os.Build; 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+</span><span class="s0">import </span><span class="s1">android.view.Gravity; 
+</span><span class="s0">import </span><span class="s1">android.view.LayoutInflater; 
+</span><span class="s0">import </span><span class="s1">android.view.Menu; 
+</span><span class="s0">import </span><span class="s1">android.view.MenuItem; 
+</span><span class="s0">import </span><span class="s1">android.view.View; 
+</span><span class="s0">import </span><span class="s1">android.view.ViewGroup; 
+</span><span class="s0">import </span><span class="s1">android.support.v4.widget.DrawerLayout; 
+</span><span class="s0">import </span><span class="s1">android.widget.ArrayAdapter; 
+</span><span class="s0">import </span><span class="s1">android.widget.TextView; 
+ 
+ 
+</span><span class="s0">public class </span><span class="s1">NetPDA </span><span class="s0">extends </span><span class="s1">ActionBarActivity 
+        </span><span class="s0">implements </span><span class="s1">NavigationDrawerFragment.NavigationDrawerCallbacks { 
+ 
+    </span><span class="s2">/** 
+     * Fragment managing the behaviors, interactions and presentation of the navigation drawer. 
+     */</span><span class="s1"> 
+    </span><span class="s0">private </span><span class="s1">NavigationDrawerFragment mNavigationDrawerFragment; 
+ 
+    </span><span class="s2">/** 
+     * Used to store the last screen title. For use in {</span><span class="s3">@link </span><span class="s2">#restoreActionBar()}. 
+     */</span><span class="s1"> 
+    </span><span class="s0">private </span><span class="s1">CharSequence mTitle; 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+        setContentView(R.layout.activity_net_pd); 
+ 
+        mNavigationDrawerFragment = (NavigationDrawerFragment) 
+                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer); 
+        mTitle = getTitle(); 
+ 
+        </span><span class="s2">// Set up the drawer.</span><span class="s1"> 
+        mNavigationDrawerFragment.setUp( 
+                R.id.navigation_drawer, 
+                (DrawerLayout) findViewById(R.id.drawer_layout)); 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public void </span><span class="s1">onNavigationDrawerItemSelected(</span><span class="s0">int </span><span class="s1">position) { 
+        </span><span class="s2">// update the main content by replacing fragments</span><span class="s1"> 
+        FragmentManager fragmentManager = getSupportFragmentManager(); 
+        fragmentManager.beginTransaction() 
+                .replace(R.id.container, PlaceholderFragment.newInstance(position + </span><span class="s4">1</span><span class="s1">)) 
+                .commit(); 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">onSectionAttached(</span><span class="s0">int </span><span class="s1">number) { 
+        </span><span class="s0">switch </span><span class="s1">(number) { 
+            </span><span class="s0">case </span><span class="s4">1</span><span class="s1">: 
+                mTitle = getString(R.string.title_section1); 
+                </span><span class="s0">break</span><span class="s1">; 
+            </span><span class="s0">case </span><span class="s4">2</span><span class="s1">: 
+                mTitle = getString(R.string.title_section2); 
+                </span><span class="s0">break</span><span class="s1">; 
+            </span><span class="s0">case </span><span class="s4">3</span><span class="s1">: 
+                mTitle = getString(R.string.title_section3); 
+                </span><span class="s0">break</span><span class="s1">; 
+        } 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">restoreActionBar() { 
+        ActionBar actionBar = getSupportActionBar(); 
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD); 
+        actionBar.setDisplayShowTitleEnabled(</span><span class="s0">true</span><span class="s1">); 
+        actionBar.setTitle(mTitle); 
+    } 
+ 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onCreateOptionsMenu(Menu menu) { 
+        </span><span class="s0">if </span><span class="s1">(!mNavigationDrawerFragment.isDrawerOpen()) { 
+            </span><span class="s2">// Only show items in the action bar relevant to this screen</span><span class="s1"> 
+            </span><span class="s2">// if the drawer is not showing. Otherwise, let the drawer</span><span class="s1"> 
+            </span><span class="s2">// decide what to show in the action bar.</span><span class="s1"> 
+            getMenuInflater().inflate(R.menu.net_pd, menu); 
+            restoreActionBar(); 
+            </span><span class="s0">return true</span><span class="s1">; 
+        } 
+        </span><span class="s0">return super</span><span class="s1">.onCreateOptionsMenu(menu); 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onOptionsItemSelected(MenuItem item) { 
+        </span><span class="s2">// Handle action bar item clicks here. The action bar will</span><span class="s1"> 
+        </span><span class="s2">// automatically handle clicks on the Home/Up button, so long</span><span class="s1"> 
+        </span><span class="s2">// as you specify a parent activity in AndroidManifest.xml.</span><span class="s1"> 
+        </span><span class="s0">int </span><span class="s1">id = item.getItemId(); 
+ 
+        </span><span class="s2">//noinspection SimplifiableIfStatement</span><span class="s1"> 
+        </span><span class="s0">if </span><span class="s1">(id == R.id.action_settings) { 
+            </span><span class="s0">return true</span><span class="s1">; 
+        } 
+ 
+        </span><span class="s0">return super</span><span class="s1">.onOptionsItemSelected(item); 
+    } 
+ 
+    </span><span class="s2">/** 
+     * A placeholder fragment containing a simple view. 
+     */</span><span class="s1"> 
+    </span><span class="s0">public static class </span><span class="s1">PlaceholderFragment </span><span class="s0">extends </span><span class="s1">Fragment { 
+        </span><span class="s2">/** 
+         * The fragment argument representing the section number for this 
+         * fragment. 
+         */</span><span class="s1"> 
+        </span><span class="s0">private static final </span><span class="s1">String ARG_SECTION_NUMBER = </span><span class="s5">&quot;section_number&quot;</span><span class="s1">; 
+ 
+        </span><span class="s2">/** 
+         * Returns a new instance of this fragment for the given section 
+         * number. 
+         */</span><span class="s1"> 
+        </span><span class="s0">public static </span><span class="s1">PlaceholderFragment newInstance(</span><span class="s0">int </span><span class="s1">sectionNumber) { 
+            PlaceholderFragment fragment = </span><span class="s0">new </span><span class="s1">PlaceholderFragment(); 
+            Bundle args = </span><span class="s0">new </span><span class="s1">Bundle(); 
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber); 
+            fragment.setArguments(args); 
+            </span><span class="s0">return </span><span class="s1">fragment; 
+        } 
+ 
+        </span><span class="s0">public </span><span class="s1">PlaceholderFragment() { 
+        } 
+ 
+        @Override 
+        </span><span class="s0">public </span><span class="s1">View onCreateView(LayoutInflater inflater, ViewGroup container, 
+                                 Bundle savedInstanceState) { 
+            View rootView = inflater.inflate(R.layout.fragment_net_pd, container, </span><span class="s0">false</span><span class="s1">); 
+            </span><span class="s0">return </span><span class="s1">rootView; 
+        } 
+ 
+        @Override 
+        </span><span class="s0">public void </span><span class="s1">onAttach(Activity activity) { 
+            </span><span class="s0">super</span><span class="s1">.onAttach(activity); 
+            ((NetPDA) activity).onSectionAttached( 
+                    getArguments().getInt(ARG_SECTION_NUMBER)); 
+        } 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>
